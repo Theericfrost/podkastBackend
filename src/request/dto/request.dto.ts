@@ -1,3 +1,3 @@
 export class RequestDto {
-    readonly email: string;
+  readonly email: string;
 }
