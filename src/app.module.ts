@@ -7,9 +7,14 @@ import { RequestModule } from './request/request.module';
 import { EmailSendModule } from './email-send/email-send.module';
 import { EmailGenerateModule } from './email-generate/email-generate.module';
 import { CalendarModule } from './calendar/calendar.module';
-
+import { PodkastModule } from './podkast/podkast.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
-  imports: [ 
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'static'),
+    }),
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
@@ -18,6 +23,7 @@ import { CalendarModule } from './calendar/calendar.module';
     EmailSendModule,
     EmailGenerateModule,
     CalendarModule,
+    PodkastModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -26,6 +26,7 @@
     "@nestjs/core": "^7.6.15",
     "@nestjs/mongoose": "^8.0.0",
     "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/serve-static": "^2.2.2",
     "mongoose": "^5.13.5",
     "nodemailer": "^6.6.3",
     "reflect-metadata": "^0.1.13",
