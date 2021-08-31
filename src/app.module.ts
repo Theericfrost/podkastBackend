@@ -11,6 +11,7 @@ import { PodkastModule } from './podkast/podkast.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { QuestionModule } from './question/question.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -26,6 +27,7 @@ import { QuestionModule } from './question/question.module';
     CalendarModule,
     PodkastModule,
     QuestionModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
