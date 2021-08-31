@@ -18,6 +18,9 @@ export class Podkast {
 
   @Prop()
   createdAt: string;
+
+  @Prop()
+  time: number;
 }
 
 export const PodkastSchema = SchemaFactory.createForClass(Podkast);

@@ -4,4 +4,5 @@ export class PodkastDto {
   readonly pathAudio: string;
   readonly pathImg: string;
   readonly createdAt: string;
+  readonly time: number;
 }

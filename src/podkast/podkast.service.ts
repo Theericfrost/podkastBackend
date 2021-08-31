@@ -16,33 +16,38 @@ export class PodkastService {
     if (podkasts.length) {
       res.status(200).send({ status: 200, data: podkasts });
     } else {
-      res.status(200).send({ status: 400, message: 'Подкасты не найдены' });
+      res.status(400).send({ status: 400, message: 'Подкасты не найдены' });
     }
   }
 
-  async getPodkastsLength(){
+  async getPodkastsLength() {
     const podkasts = await this.model.find().exec();
-    console.log(podkasts.length)
     return podkasts.length;
   }
 
   async getPodkastPagination(query, response: Response) {
-    const {limit, page} = query;
-    const podkastsAmount = await this.getPodkastsLength()
-   await this.model.find().skip(Number(page*limit)).limit(Number(limit)).exec().then(
-    (res) => {
-      if (res) {
-        response.status(200).send({ status: 200, data: res, total: podkastsAmount });
-      }
-    },
-    (err) => {
-      if (err) {
-        response.send({ status: 400, message: 'Подкасты не найден' });
-      }
-    },
-  );
+    const { limit, page } = query;
+    const podkastsAmount = await this.getPodkastsLength();
+    await this.model
+      .find()
+      .skip(Number(page * limit))
+      .limit(Number(limit))
+      .exec()
+      .then(
+        (res) => {
+          if (res) {
+            response
+              .status(200)
+              .send({ status: 200, data: res, total: podkastsAmount });
+          }
+        },
+        (err) => {
+          if (err) {
+            response.send({ status: 400, message: 'Подкасты не найден' });
+          }
+        },
+      );
   }
-
 
   async getPodkastById(id: string, response: Response) {
     await this.model

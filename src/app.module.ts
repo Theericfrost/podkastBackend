@@ -10,6 +10,7 @@ import { CalendarModule } from './calendar/calendar.module';
 import { PodkastModule } from './podkast/podkast.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { QuestionModule } from './question/question.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -24,6 +25,7 @@ import { join } from 'path';
     EmailGenerateModule,
     CalendarModule,
     PodkastModule,
+    QuestionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

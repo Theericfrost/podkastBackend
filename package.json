@@ -29,6 +29,7 @@
     "@nestjs/serve-static": "^2.2.2",
     "mongoose": "^5.13.5",
     "nodemailer": "^6.6.3",
+    "pug": "^3.0.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6"
