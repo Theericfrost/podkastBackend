@@ -12,6 +12,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { QuestionModule } from './question/question.module';
 import { AuthModule } from './auth/auth.module';
+import { SessionModule } from 'nestjs-session';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -19,6 +20,9 @@ import { AuthModule } from './auth/auth.module';
     }),
     ConfigModule.forRoot({
       envFilePath: '.env',
+    }),
+    SessionModule.forRoot({
+      session: { secret: 'frostcast' },
     }),
     MongooseModule.forRoot(process.env.BD),
     RequestModule,

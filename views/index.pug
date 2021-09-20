@@ -2,6 +2,13 @@ doctype html
 html 
     head  
         title test
-    body   
-        h1 #{title}
-        btn
+        link(rel='stylesheet' href="/stylesheets/index.css")
+    body 
+        div.login__container
+            form.login__form(action='/auth/admin' method='POST')
+                h1.email__title #{title}
+                input.email__input(type="text" name="login" placeholder="")
+                | 
+                h1.password__title Пароль
+                input.password__input(type="text" name="password" placeholder="") 
+                input.enter(type="submit" value="войти") 

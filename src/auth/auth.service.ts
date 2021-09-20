@@ -26,6 +26,23 @@ export class AuthService {
     }
   }
 
+  async loginAdmin(
+    user: UserDro,
+    response: Response,
+    session: { token?: string },
+  ) {
+    try {
+      const userLogIn = await this.checkUser(user);
+      if (userLogIn) {
+        session.token = (await this.generateToken(userLogIn)).token;
+        response.status(301).redirect(`/dashboard`);
+      }
+    } catch (e) {
+      console.log(e)
+      response.status(403).send(e);
+    }
+  }
+
   async generateToken(user: UserDro) {
     const payload = { login: user.login, password: user.password };
     return {

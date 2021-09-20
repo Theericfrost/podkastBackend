@@ -1,0 +1,10 @@
+h1 {
+}
+.main__part {
+    display: flex;
+}
+.main__part .navbar {
+    min-width: 30%;
+}
+.main__part .main {
+}

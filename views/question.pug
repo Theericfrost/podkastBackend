@@ -1,0 +1,17 @@
+doctype html
+html 
+    head  
+        title test
+        link(rel='stylesheet' href='/stylesheets/desktop.css')
+    body 
+        h1 Добавить вопрос
+        div.main__part
+            include ./modules/navbar.pug
+            .main 
+                form(action='/questions' method='POST')
+                    input(type="hidden" name="headers[Authorization]" value="Bearer " + token)
+                    h1 Вопрос
+                    input(type="text" name="question")
+                    h1 Ответ
+                    input(type="text" name="answer")
+                    input(type="submit" value="Добавить")
