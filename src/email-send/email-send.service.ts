@@ -4,7 +4,6 @@ import { Request, RequestDocument } from '../request/schemas/request.schema';
 import { Model } from 'mongoose';
 import { Response } from 'express';
 import { EmailGenerateService } from 'src/email-generate/email-generate.service';
-
 @Injectable()
 export class EmailSendService {
   constructor(
@@ -18,7 +17,7 @@ export class EmailSendService {
       const subscribersOnlyEmail = subscribers.map((el) => ({
         email: el.email,
       }));
-      const answer =
+      const answer: any =
         this.emailGenerateService.emailSender(subscribersOnlyEmail);
       if (answer) {
         res

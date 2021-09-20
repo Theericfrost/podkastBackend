@@ -1,0 +1,25 @@
+doctype html
+html 
+    head  
+        title FrostCast
+        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/desktop.css')
+    body 
+        div.container
+            div.header
+                h1 Добавить дату в календарь 
+            div.main__part
+                include ./modules/navbar.pug
+                .main 
+                    div сегодня: #{Math.round((new Date()).getTime() / 1000)}
+                    form(action='/calendar' method='POST')
+                        input(type="hidden" name="headers[Authorization]" value="Bearer " + token)
+                        h1.title Время начала
+                        input(type="text" name="start")
+                        h1.title Время конца
+                        input(type="text" name="end")
+                        h1.title Название
+                        input(type="text" name="name")
+                        h1.title Тип (warn)
+                        input(type="text" name="warn")
+                        input.submit(type="submit" value="Добавить")

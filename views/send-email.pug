@@ -7,14 +7,10 @@ html
     body 
         div.container
             div.header
-                h1 Добавить вопрос
+                h1 Отправить письма
             div.main__part
                 include ./modules/navbar.pug
                 .main 
-                    form(action='/questions' method='POST')
+                    form(action='/email-send' method='POST')
                         input(type="hidden" name="headers[Authorization]" value="Bearer " + token)
-                        h1.title Вопрос
-                        input(type="text" name="question")
-                        h1.title Ответ
-                        input(type="text" name="answer")
-                        input.submit(type="submit" value="Добавить")
+                        input.submit(type="submit" value="Отправить письма о новой серии")

@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Res,
+  UseGuards,
+  UseFilters,
+} from '@nestjs/common';
 import { CalendarService } from './calendar.service';
 import { CalendarDto } from './dto/calendar.dto';
 import { Response } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ViewAuthFilter } from 'src/auth/jwt-catch.guard';
 
 @Controller('calendar')
 export class CalendarController {
@@ -13,6 +23,8 @@ export class CalendarController {
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
+  @UseFilters(ViewAuthFilter)
   createDate(@Body() body: CalendarDto, @Res() res: Response) {
     this.calendarService.createDate(body, res);
   }

@@ -1,0 +1,17 @@
+doctype html
+html 
+    head  
+        title FrostCast
+        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/desktop.css')
+    body 
+        div.container
+            div.header
+                h1 Добавить подписчика
+            div.main__part
+                include ./modules/navbar.pug
+                .main 
+                    form(action='/request' method='POST')
+                        h1.title Email
+                        input(type="text" name="email")
+                        input.submit(type="submit" value="Добавить")
