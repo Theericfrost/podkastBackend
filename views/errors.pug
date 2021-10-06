@@ -1,0 +1,19 @@
+doctype html
+html 
+    head  
+        title FrostCast
+        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/desktop.css')
+    body 
+        div.container
+            div.header
+                h1 Ошибки
+            div.main__part
+                include ./modules/navbar.pug
+                .main 
+                    each error in errors
+                        div.erorr_unit= error.error + ' ' + new Date(error.createdAt).toLocaleDateString()
+                    else
+                        div There are no values
+        //- form(action='/articles' method='POST')
+        //-     input(type="hidden" name="headers[Authorization]" value="Bearer " + token)

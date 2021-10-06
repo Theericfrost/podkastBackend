@@ -2,9 +2,14 @@ import { Controller, Get, Session, Res, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Render } from '@nestjs/common';
 import { Response, Request } from 'express';
+import { ErrorsService } from './errors/errors.service';
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly errorsService: ErrorsService,
+  ) {}
+
   @Get()
   @Render('index')
   index() {
@@ -49,7 +54,6 @@ export class AppController {
     const data = {
       token: session.token,
       reset: function () {
-        console.log('hui');
         session.token = null;
       },
     };
@@ -80,9 +84,37 @@ export class AppController {
     return data;
   }
 
+  @Get('/dashboard/articles')
+  @Render('articles')
+  articles(@Session() session: { token?: string }) {
+    const data = {
+      token: session.token,
+      reset: () => {
+        session.token = null;
+      },
+    };
+    return data;
+  }
+
+  @Get('/dashboard/errors')
+  @Render('errors')
+  async errors(@Session() session: { token?: string }) {
+    const errors = await this.errorsService.getErrors();
+    const data = {
+      token: session.token,
+      errors,
+      reset: () => {
+        session.token = null;
+      },
+    };
+    return data;
+  }
+
   @Get('/dashboard/exit')
   exit(@Req() req: Request, @Res() res: Response) {
-    req.session.destroy((err) => {console.log(err)});
+    req.session.destroy((err) => {
+      console.log(err);
+    });
     res.status(301).redirect('/');
   }
 }

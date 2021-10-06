@@ -1,0 +1,22 @@
+doctype html
+html 
+    head  
+        title FrostCast
+        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/desktop.css')
+    body 
+        div.container
+            div.header
+                h1 Добавить статью
+            div.main__part
+                include ./modules/navbar.pug
+                .main 
+                    form(action='/articles' method='POST')
+                        input(type="hidden" name="headers[Authorization]" value="Bearer " + token)
+                        h1.title Заголовок
+                        input(type="text" name="title")
+                        h1.title Тег
+                        input(type="text" name="tag")
+                        h1.title Тело(ввод html возможен)
+                        textarea(type="text" name="body")
+                        input.submit(type="submit" value="Добавить")

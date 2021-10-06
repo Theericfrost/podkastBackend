@@ -13,6 +13,8 @@ import { join } from 'path';
 import { QuestionModule } from './question/question.module';
 import { AuthModule } from './auth/auth.module';
 import { SessionModule } from 'nestjs-session';
+import { ArticlesModule } from './articles/articles.module';
+import { ErrorsModule } from './errors/errors.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -32,6 +34,8 @@ import { SessionModule } from 'nestjs-session';
     PodkastModule,
     QuestionModule,
     AuthModule,
+    ArticlesModule,
+    ErrorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
